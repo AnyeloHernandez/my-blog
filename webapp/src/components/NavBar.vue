@@ -11,10 +11,16 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     width: 100%;
     font-size: 12px;
     text-align: center;
-    margin: 1rem 0;
+    margin: 0;
+    padding: 0.75rem 0;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .navbar :deep(a.router-link-exact-active) {
