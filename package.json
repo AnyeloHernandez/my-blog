@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "markdown-it": "^14.1.1"
+  }
+}
