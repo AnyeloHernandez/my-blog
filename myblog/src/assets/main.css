@@ -1,0 +1,93 @@
+/* ============================================
+   VARIABLES — la paleta CRT/terminal
+   ============================================ */
+:root {
+  /* Verde fósforo clásico (P1) */
+  --crt-green: #33ff33;
+  --crt-green-dim: #1a9f1a;
+  --crt-green-glow: rgba(51, 255, 51, 0.5);
+
+  /* Ámbar (terminales IBM 3270) */
+  --crt-amber: #ffb000;
+  --crt-amber-dim: #b07800;
+
+  /* Fondo */
+  --crt-bg: #0a0e0a;
+  --crt-bg-darker: #050805;
+
+  /* Tipografía */
+  --font-mono: 'IBM Plex Mono', 'Courier New', 'Consolas', monospace;
+}
+
+/* ============================================
+   RESET MÍNIMO
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--crt-bg);
+  color: var(--crt-green);
+  font-family: var(--font-mono);
+  /* Sutil glow en TODO el texto: la firma CRT */
+  text-shadow: 0 0 2px var(--crt-green-glow);
+}
+
+a {
+  color: var(--crt-amber);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--crt-amber-dim);
+  text-decoration: underline;
+}
+
+/* ============================================
+   EFECTO SCANLINES — el detalle que vende todo
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0)     0px,
+    rgba(0, 0, 0, 0)     2px,
+    rgba(0, 0, 0, 0.15)  3px,
+    rgba(0, 0, 0, 0.15)  3px
+  );
+}
+
+/* Vignette sutil para simular curvatura del tubo */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* Scrollbar también temática */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--crt-bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--crt-green-dim);
+  border: 2px solid var(--crt-bg-darker);
+}
