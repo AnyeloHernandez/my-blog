@@ -2,48 +2,75 @@
 </script>
 
 <template>
-    <div class="navbar">
-        <div class="side-nav-header">
+    <aside class="sidebar">
+      <header class="sidebar-header">
         <h2>Navigation</h2>
-    </div>
-    <nav class="side-nav">
+      </header>
+    <nav class="sidebar-nav">
         <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Posts</a></li>
         <li><a href="#">About</a></li>
         </ul>
     </nav>
-    </div>
+    <nav class="other-links">
+        <ul>
+        <li><a 
+              href="https://github.com/AnyeloHernandez"
+              target="_blank"
+              rel="noopener noreferrer">GitHub</a></li>
+        <li><a 
+              href="https://www.linkedin.com/in/anyelo-hernandez/"
+              target="_blank"
+              rel="noopener noreferrer">Linkedin</a></li>
+        </ul>
+    </nav>
+    </aside>
 </template>
 
 <style scoped>
-.navbar {
+.sidebar {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background: var(--crt-green-dim);
+  border-right: 1px solid var(--crt-green);
+  width: 300px;
 }
 
-.side-nav-header {
+.sidebar-header {
   padding: 1rem;
-  border-bottom: 1px solid var(--crt-green-dim);
-  width: 300px;
 }
 
-.side-nav {
-  width: 300px;
-  background: var(--crt-green-dim);
+.sidebar-header h2 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--crt-green);
+  padding: 0.5rem 0;
+}
+
+.sidebar-nav {
   padding: 1rem;
   padding-left: 2rem;
 }
 
-.side-nav ul {
+.sidebar-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.side-nav li {
+.sidebar-nav li {
   margin-bottom: 1rem;
+}
+
+.other-links {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid var(--crt-green-dim);
+  margin-bottom: 48px;
+}
+
+.sidebar-nav a::before {
+  content: '> ';
+  color: var(--crt-green-dim);
 }
 </style>
