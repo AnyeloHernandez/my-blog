@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Github, Linkedin, LinkedinIcon } from 'lucide-vue-next';
 </script>
 
 <template>
@@ -18,11 +19,11 @@
         <li><a 
               href="https://github.com/AnyeloHernandez"
               target="_blank"
-              rel="noopener noreferrer">GitHub</a></li>
+              rel="noopener noreferrer"><Github :size="16" /> <span class="social-link">GitHub</span></a></li>
         <li><a 
               href="https://www.linkedin.com/in/anyelo-hernandez/"
               target="_blank"
-              rel="noopener noreferrer">Linkedin</a></li>
+              rel="noopener noreferrer"><Linkedin :size="16"/> <span class="social-link">Linkedin</span></a></li>
         </ul>
     </nav>
     </aside>

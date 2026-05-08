@@ -1,6 +1,41 @@
 <script setup lang="ts">
 import SideNav from './components/SideNav.vue';
 import TerminalHeader from './components/TerminalHeader.vue'
+import PostCard from './components/PostCard.vue';
+import matter from 'front-matter'
+
+type PostListItem = {
+    slug: string; 
+    title: string;
+    date?: string;
+    summary?: string;
+  }
+
+const postFiles = import.meta.glob<string>('./content/posts/*.md', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+})
+
+type PostFrontMatter = {
+  title?: string
+  date?: string
+  summary?: string
+}
+
+const posts: PostListItem[] = Object.entries(postFiles).map(([path, raw]) => {
+  const slug = (path.split('/').pop() ?? '').replace(/\.md$/, '')
+
+  const { attributes } = matter<PostFrontMatter>(raw)
+
+  return {
+    slug,
+    title: attributes.title ?? slug,
+    date: attributes.date,
+    summary: attributes.summary,
+  }
+})
+
 </script>
 
 <template>
@@ -17,8 +52,12 @@ import TerminalHeader from './components/TerminalHeader.vue'
 
           <p>-----------------------------------------</p>
           <h2>Latest Posts</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur officiis ullam nam dolorum at quidem vero cumque placeat odit repellendus, ducimus, quas officia perferendis fugiat mollitia repudiandae quibusdam fugit voluptates, unde dignissimos nostrum tempora labore eaque porro! Soluta dolore eligendi officiis tempora sit? Quod suscipit quasi excepturi sunt architecto ut cum, officiis corporis blanditiis dolorem vel minima et, fuga accusantium necessitatibus saepe dolore modi laudantium commodi praesentium ipsa labore! Minus vero tempore, est placeat non deserunt, quo provident tenetur repellat autem ullam ex dicta facilis itaque qui nobis, a ratione unde! Ea nobis iure deserunt tempore ut, adipisci odit incidunt vitae unde eius quos. Soluta, vero rerum? Non, at odit expedita soluta ad temporibus, debitis sunt quae, animi libero totam repellat exercitationem nesciunt nulla praesentium optio nobis et odio nihil labore quod adipisci eum! Nemo nulla tenetur veritatis dignissimos, vero minus aspernatur reiciendis perspiciatis repellendus ut accusantium, quis maiores maxime possimus dolores dolorem porro fugiat hic? Quod incidunt odio quis quam placeat sit nihil minima nisi necessitatibus vel aliquam quas, reprehenderit recusandae quisquam ducimus reiciendis cupiditate optio rem molestiae velit maxime? Quaerat voluptatem veritatis odio rerum nesciunt neque eveniet fuga ipsam fugit, aliquam voluptates eligendi commodi, dolor sequi molestias? Aliquid minus excepturi tempore voluptate obcaecati quam quo sint, veniam est nihil, laudantium perferendis id non illo! Placeat veniam ipsa, inventore pariatur perspiciatis eaque. Eaque mollitia expedita, perferendis optio asperiores, quasi minus tenetur facere autem est impedit doloribus ratione? Cum obcaecati porro quos placeat dolore ea doloribus. Perferendis quasi minima excepturi.</p>
-          
+          <p>Here are some of the latest posts on the blog. Click on "Read More" to dive into the full article.</p>
+          <div class="post-list">
+            <li v-for="post in posts" :key="post.slug">
+              <PostCard :title="post.title" :summary="post.summary" :date="post.date" />
+            </li>
+          </div>
         </div>
       </main>
     </div>
@@ -56,5 +95,10 @@ import TerminalHeader from './components/TerminalHeader.vue'
 .article {
   max-width: 70ch;
   margin: 0 auto;
+}
+
+.post-list {
+  list-style: none;
+  margin-bottom: 1rem;
 }
 </style>
