@@ -14,6 +14,9 @@ import { Github, Linkedin } from 'lucide-vue-next';
         <li><a href="#">About</a></li>
         </ul>
     </nav>
+    <ul class="sidebar-image">
+    <li><img src="../assets/jill.webp"></li>
+    </ul>      
     <nav class="other-links">
         <ul>
         <li><a 
@@ -64,7 +67,7 @@ import { Github, Linkedin } from 'lucide-vue-next';
 }
 
 .other-links {
-  margin-top: auto;
+  margin-top: 0.5rem;
   padding: 1rem;
   border-top: 1px solid var(--crt-green-dim);
   margin-bottom: 48px;
@@ -73,5 +76,68 @@ import { Github, Linkedin } from 'lucide-vue-next';
 .sidebar-nav a::before {
   content: '> ';
   color: var(--crt-green-dim);
+}
+
+.sidebar-image {
+  margin-top: auto;
+  padding: 0 0.7rem;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.sidebar-image li {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+
+  box-shadow: 0 0 8px var(--crt-green-dim);
+}
+
+.sidebar-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* verde CRT */
+  filter:
+    grayscale(1)
+    sepia(1)
+    hue-rotate(85deg)
+    saturate(3.5)
+    contrast(1.1)
+    brightness(0.8);
+
+  opacity: 0.95;
+}
+
+/* scanlines + brillo encima */ 
+.sidebar-image li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.18) 3px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.8;
+}
+
+.sidebar-image li::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: radial-gradient(circle at 50% 50%, var(--crt-green-dim), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.15;
 }
 </style>

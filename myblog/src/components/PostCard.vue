@@ -13,9 +13,11 @@ const props = defineProps<{
 
 <template>
     <div class="post-card">
-            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dougsartgallery.com%2Fimages%2FASCII-tux-linux1.gif&f=1&nofb=1&ipt=d99c8b996d4174a57ac02adaed44e82f9b459dd22e520ac3616403a8ab17bc05" 
-            alt="Post Image" class="post-image
-            ">
+            <img 
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dougsartgallery.com%2Fimages%2FASCII-tux-linux1.gif&f=1&nofb=1&ipt=d99c8b996d4174a57ac02adaed44e82f9b459dd22e520ac3616403a8ab17bc05" 
+            alt="Post Image" 
+            class="post-image"
+            loading="lazy">
         <div class="post">
             <h3 class="post-title">{{ props.title }}</h3>
             <p class="post-date">{{ props.date }}</p>
