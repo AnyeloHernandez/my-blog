@@ -5,14 +5,6 @@ import matter from 'front-matter'
 import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
 
-type PostData = {
-    slug: string; 
-    title: string;
-    imageUrl?: string;
-    date?: string;
-    summary?: string;
-}
-
 const route = useRoute();
 const slug = route.params.slug as string
 
