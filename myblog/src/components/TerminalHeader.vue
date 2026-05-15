@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 
 const props = defineProps<{
   user?: string
@@ -31,6 +32,41 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(timer)
 })
+
+const route = useRoute()
+const command = ref("")
+const showCursor = ref(false)
+
+let currentTimeout: number | null = null
+
+watch(
+    () => route.path, async (newRoute) => {
+        if (currentTimeout) {
+            clearTimeout(currentTimeout)
+            currentTimeout = null
+        }
+        command.value = '' // Reset value
+        showCursor.value = false
+
+        await nextTick()
+
+        const newCommand =
+            newRoute === '/posts' ? 'ls posts' :
+            newRoute === '/about' ? 'cat about-me' :
+            ''
+
+        command.value = newCommand
+
+        if (newCommand) {
+            currentTimeout = window.setTimeout(() => {
+            showCursor.value = true
+            currentTimeout = null
+          }, newCommand.length * 100)        
+      } else {
+            showCursor.value = true
+        }
+    }
+)
 </script>
 
 <template>
@@ -40,7 +76,18 @@ onUnmounted(() => {
       <span class="at">@</span>
       <span class="host">{{ props.host ?? 'localhost' }}</span>
       <span class="path">:~$ </span>
-      <span class="cursor">&#9608;</span>
+
+      <span class="command">
+        <span
+            v-for="(char, idx) in command"
+            :key="`${command}-${idx}`"
+            class="char"
+            :style="{ animationDelay: `${idx * 0.10}s`}"
+        >
+            {{ char }}
+        </span>
+      </span>
+      <span v-if="showCursor" class="cursor">&#9608;</span>
     </div>
     <div class="clock">
       {{ formatDateTime(currentTime) }}
@@ -78,5 +125,17 @@ onUnmounted(() => {
 .clock {
   color: var(--crt-green-dim);
   letter-spacing: 0.05em;
+}
+
+.char {
+    display: inline-block;
+    opacity: 0;
+    animation: appear 0.10s forwards;
+    white-space: pre;
+}
+
+@keyframes appear {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 </style>
