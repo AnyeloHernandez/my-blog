@@ -38,6 +38,7 @@ import { Github, Linkedin } from 'lucide-vue-next';
   flex-direction: column;
   border-right: 1px solid var(--crt-green);
   width: 300px;
+  overflow-y: auto;
 }
 
 .sidebar-header {
@@ -139,5 +140,24 @@ import { Github, Linkedin } from 'lucide-vue-next';
   background: radial-gradient(circle at 50% 50%, var(--crt-green-dim), transparent 60%);
   mix-blend-mode: screen;
   opacity: 0.15;
+}
+
+@media (max-width: 1440px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .sidebar-nav {
+    padding: 0.75rem;
+    padding-left: 1rem;
+  }
+
+  .other-links {
+    padding: 0.75rem;
+  }
 }
 </style>

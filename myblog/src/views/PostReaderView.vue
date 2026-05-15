@@ -31,11 +31,27 @@ const postContent = md.render(body)
 </script>
 
 <template>
+    <article class="article">
     <header>
-        <img 
-        :src="attributes.image"
-        alt="No img">
-        <h1>{{ attributes.title }}</h1>
+        <img
+            class="post-image"
+            :src="attributes.image"
+            alt="No img"
+            loading="lazy">
     </header>
     <div class="post-content" v-html="postContent"></div>
+    </article>
 </template>
+
+<style scoped>
+.article {
+    max-width: 80ch;
+    margin: 0 auto;
+}
+.post-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+</style>

@@ -33,8 +33,6 @@ import { RouterView } from 'vue-router';
   flex: 1;
   overflow-y: auto;
   line-height: 1.6;
-  max-width: 70ch;
-  margin: 0 auto;
 }
 
 .layout {

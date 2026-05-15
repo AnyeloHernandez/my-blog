@@ -71,4 +71,9 @@ const posts: PostListItem[] = Object.entries(postFiles).map(([path, raw]) => {
   list-style: none;
   margin-bottom: 1rem;
 }
+
+.article {
+    max-width: 80ch;
+    margin: 0 auto;
+}
 </style>
