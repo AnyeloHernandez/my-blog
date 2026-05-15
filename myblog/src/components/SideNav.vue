@@ -9,9 +9,9 @@ import { Github, Linkedin } from 'lucide-vue-next';
       </header>
     <nav class="sidebar-nav">
         <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Posts</a></li>
-        <li><a href="#">About</a></li>
+        <li><RouterLink to="/">Home</RouterLink></li>
+        <li><RouterLink to="/posts">Posts</RouterLink></li>
+        <li><RouterLink to="/about">About</RouterLink></li>
         </ul>
     </nav>
     <ul class="sidebar-image">

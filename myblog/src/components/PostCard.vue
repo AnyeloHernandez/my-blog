@@ -2,6 +2,7 @@
 <!-- Recieves T -->
 <script setup lang="ts">
 const props = defineProps<{
+  slug?: string
   title?: string
   imageUrl?: string
   summary?: string
@@ -22,7 +23,9 @@ const props = defineProps<{
             <h3 class="post-title">{{ props.title }}</h3>
             <p class="post-date">{{ props.date }}</p>
             <p class="post-summary">{{ props.summary }}</p>
-            <button class="read-more">Read More</button>
+            <RouterLink :to="`/posts/${props.slug}`" class="read-more">
+              Read More
+            </RouterLink>
         </div>
     </div>
 </template>
@@ -66,6 +69,9 @@ const props = defineProps<{
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 4px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .post-date {
