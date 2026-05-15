@@ -15,7 +15,7 @@ const props = defineProps<{
 <template>
     <div class="post-card">
             <img 
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dougsartgallery.com%2Fimages%2FASCII-tux-linux1.gif&f=1&nofb=1&ipt=d99c8b996d4174a57ac02adaed44e82f9b459dd22e520ac3616403a8ab17bc05" 
+            :src="props.imageUrl"
             alt="Post Image" 
             class="post-image"
             loading="lazy">
@@ -24,7 +24,7 @@ const props = defineProps<{
             <p class="post-date">{{ props.date }}</p>
             <p class="post-summary">{{ props.summary }}</p>
             <RouterLink :to="`/posts/${props.slug}`" class="read-more">
-              Read More
+              Read Post
             </RouterLink>
         </div>
     </div>

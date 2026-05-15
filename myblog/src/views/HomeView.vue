@@ -5,6 +5,7 @@ import matter from 'front-matter'
 type PostListItem = {
     slug: string; 
     title: string;
+    imageUrl?: string;
     date?: string;
     summary?: string;
   }
@@ -19,6 +20,7 @@ type PostFrontMatter = {
   title?: string
   date?: string
   summary?: string
+  image?: string
 }
 
 const posts: PostListItem[] = Object.entries(postFiles).map(([path, raw]) => {
@@ -29,6 +31,7 @@ const posts: PostListItem[] = Object.entries(postFiles).map(([path, raw]) => {
   return {
     slug,
     title: attributes.title ?? slug,
+    imageUrl: attributes.image,
     date: attributes.date,
     summary: attributes.summary,
   }
@@ -51,6 +54,7 @@ const posts: PostListItem[] = Object.entries(postFiles).map(([path, raw]) => {
                 :key="post.slug"
                 :slug="post.slug"
                 :title="post.title"
+                :imageUrl="post.imageUrl"
                 :summary="post.summary"
                 :date="post.date"
             />
@@ -61,11 +65,6 @@ const posts: PostListItem[] = Object.entries(postFiles).map(([path, raw]) => {
 <style scoped>
 .dim {
   color: var(--crt-green-dim);
-}
-
-.article {
-  max-width: 70ch;
-  margin: 0 auto;
 }
 
 .post-list {

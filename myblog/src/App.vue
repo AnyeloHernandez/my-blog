@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import SideNav from './components/SideNav.vue';
 import TerminalHeader from './components/TerminalHeader.vue'
-
 import { RouterView } from 'vue-router';
-
-
 
 </script>
 
@@ -14,9 +11,7 @@ import { RouterView } from 'vue-router';
     <div class="layout">
     <SideNav />
       <main class="content">
-        <div>
           <RouterView />
-        </div>
       </main>
     </div>
     
@@ -38,6 +33,8 @@ import { RouterView } from 'vue-router';
   flex: 1;
   overflow-y: auto;
   line-height: 1.6;
+  max-width: 70ch;
+  margin: 0 auto;
 }
 
 .layout {

@@ -3,6 +3,7 @@ title: Mi primer post!
 date: "2026-05-08"
 autor: Anyelo Hernández
 summary: Breve descripción del contenido del post. Hola mundo!
+image: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dougsartgallery.com%2Fimages%2FASCII-tux-linux1.gif&f=1&nofb=1&ipt=d99c8b996d4174a57ac02adaed44e82f9b459dd22e520ac3616403a8ab17bc05
 tags: [introducción, hola mundo]
 ---
 
