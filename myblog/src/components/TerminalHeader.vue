@@ -7,6 +7,7 @@ const props = defineProps<{
   host?: string
 }>()
 
+const CHAR_SPEED_MS = 50
 const currentTime = ref(new Date())
 
 let timer: number
@@ -50,19 +51,23 @@ watch(
 
         await nextTick()
 
+        const slug = route.params.slug
+
         const newCommand =
             newRoute === '/posts' ? 'ls posts' :
             newRoute === '/about' ? 'cat about-me' :
+            newRoute.startsWith('/posts/')  ? `cat ${slug}` :
             ''
 
         command.value = newCommand
+        console.log(newCommand)
 
         if (newCommand) {
             currentTimeout = window.setTimeout(() => {
             showCursor.value = true
             currentTimeout = null
-          }, newCommand.length * 100)        
-      } else {
+          }, newCommand.length * CHAR_SPEED_MS) + CHAR_SPEED_MS
+          } else {
             showCursor.value = true
         }
     }
@@ -82,7 +87,7 @@ watch(
             v-for="(char, idx) in command"
             :key="`${command}-${idx}`"
             class="char"
-            :style="{ animationDelay: `${idx * 0.10}s`}"
+            :style="{ animationDelay: `${idx * (CHAR_SPEED_MS/1000)}s`}"
         >
             {{ char }}
         </span>
@@ -130,7 +135,7 @@ watch(
 .char {
     display: inline-block;
     opacity: 0;
-    animation: appear 0.10s forwards;
+    animation: appear 50ms forwards;
     white-space: pre;
 }
 
