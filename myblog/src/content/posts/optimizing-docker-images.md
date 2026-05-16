@@ -8,9 +8,23 @@ tags: [docker, information]
 ---
 
 # Optimizing Docker images
-Docker is a good tool when we want portability and reusability, it's easy to use and to manage. But we have to take in consideration how to optimize images because we could end with an image that is: too big, insecure and slow.
+Docker is great, until your image weighs 2GB and takes forever to pull. It happens faster than you think: you add a dependency here, forget a .env file there, and suddenly your "simple" container is a disaster.
 
 Take in consideration which dependencies you use, which files you ignore and don't end with a Docker image with the .env file loaded, lol.
+
+## Watch your base image
+
+Don't just grab `ubuntu` or `python:latest` out of habit. Those are huge.
+Use slim or alpine variants when you can:
+
+```dockerfile
+# Instead of this
+FROM python:3.12
+
+# Use this
+FROM python:3.12-slim
+```
+The difference can be 800MB vs 60MB!!.
 
 ## .dockerignore
 Ahh, yes, we can ignore files too! It works similar as .gitignore. Create it on your working root directory.
@@ -97,3 +111,13 @@ EXPOSE 3033
 
 ENTRYPOINT ["/usr/local/bin/radar-api"]
 ```
+
+## TL;DR
+
+- Use slim/alpine base images.
+- Order layers: dependencies first, code last.
+- Always have a .dockerignore.
+- Multi-stage builds for compiled apps.
+
+Small images pull faster, deploy faster, and have a smaller attack surface. 
+Worth the extra 10 minutes to set up right.
