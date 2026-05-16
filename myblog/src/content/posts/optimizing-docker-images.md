@@ -61,7 +61,7 @@ EXPOSE 8082
 CMD ["./api1"]
 ```
 
-## Rust example
+### Rust example
 ```
 FROM rust:1.95-alpine3.23 AS builder
 
