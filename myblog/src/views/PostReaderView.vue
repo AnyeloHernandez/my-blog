@@ -4,6 +4,30 @@
 import matter from 'front-matter'
 import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
+import { ref, onMounted } from 'vue';
+
+const giscusContainer = ref(null)
+
+onMounted(() => {
+  const script = document.createElement('script')
+  script.src = 'https://giscus.app/client.js'
+  script.setAttribute('data-repo', 'AnyeloHernandez/my-blog')
+  script.setAttribute('data-repo-id', 'R_kgDORQ_wUQ')
+  script.setAttribute('data-category', 'General')
+  script.setAttribute('data-category-id', 'DIC_kwDORQ_wUc4C9ZGO')
+  script.setAttribute('data-mapping', 'pathname')
+  script.setAttribute('data-strict', '0')
+  script.setAttribute('data-reactions-enabled', '1')
+  script.setAttribute('data-emit-metadata', '0')
+  script.setAttribute('data-input-position', 'top')
+  script.setAttribute('data-theme', 'catppuccin_mocha')
+  script.setAttribute('data-lang', 'en')
+  script.setAttribute('data-loading', 'lazy')
+  script.setAttribute('crossorigin', 'anonymous')
+  script.async = true
+
+  giscusContainer.value.appendChild(script)
+})
 
 const route = useRoute();
 const slug = route.params.slug as string
@@ -42,6 +66,7 @@ const postContent = md.render(body)
     </header>
     <div class="post-content" v-html="postContent"></div>
     </article>
+    <div ref="giscusContainer" class="giscus-container"></div>
 </template>
 
 <style scoped>
