@@ -49,7 +49,7 @@ const props = defineProps<{
 .post-image {
   width: 240px;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   margin-right: 1rem;
 }
 

@@ -38,6 +38,7 @@ const postContent = md.render(body)
             :src="attributes.image"
             alt="No img"
             loading="lazy">
+        <span class="post-date">Created at: {{ attributes.date }}</span>
     </header>
     <div class="post-content" v-html="postContent"></div>
     </article>
@@ -47,6 +48,13 @@ const postContent = md.render(body)
 .article {
   max-width: 80ch;
   margin: 0 auto;
+}
+
+.post-date {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--crt-green);
+  font-size: 0.875em;
 }
 
 .post-image {
