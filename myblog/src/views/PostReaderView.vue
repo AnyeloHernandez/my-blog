@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
 import { ref, onMounted } from 'vue';
 
-const giscusContainer = ref(null)
+const giscusContainer = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   const script = document.createElement('script')
@@ -26,7 +26,9 @@ onMounted(() => {
   script.setAttribute('crossorigin', 'anonymous')
   script.async = true
 
+if (giscusContainer.value) {
   giscusContainer.value.appendChild(script)
+}
 })
 
 const route = useRoute();
