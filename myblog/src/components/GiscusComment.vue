@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 
 const giscusContainer = ref<HTMLElement | null>(null)
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick() // espera a que Vue Router actualice el pathname
+
   const script = document.createElement('script')
   script.src = 'https://giscus.app/client.js'
   script.setAttribute('data-repo', 'AnyeloHernandez/my-blog')
