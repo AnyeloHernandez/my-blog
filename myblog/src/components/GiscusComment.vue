@@ -1,0 +1,41 @@
+<script setup lang="ts">
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+const giscusContainer = ref<HTMLElement | null>(null)
+const route = useRoute()
+
+const loadGiscus = () => {
+  if (!giscusContainer.value) return
+
+  // Limpiar el widget anterior
+  giscusContainer.value.innerHTML = ''
+
+  const script = document.createElement('script')
+  script.src = 'https://giscus.app/client.js'
+  script.setAttribute('data-repo', 'AnyeloHernandez/my-blog')
+  script.setAttribute('data-repo-id', 'R_kgDORQ_wUQ')
+  script.setAttribute('data-category', 'General')
+  script.setAttribute('data-category-id', 'DIC_kwDORQ_wUc4C9ZGO')
+  script.setAttribute('data-mapping', 'title')
+  script.setAttribute('data-strict', '0')
+  script.setAttribute('data-reactions-enabled', '1')
+  script.setAttribute('data-emit-metadata', '0')
+  script.setAttribute('data-input-position', 'top')
+  script.setAttribute('data-theme', 'catppuccin_mocha')
+  script.setAttribute('data-lang', 'en')
+  script.setAttribute('data-loading', 'lazy')
+  script.setAttribute('crossorigin', 'anonymous')
+  script.async = true
+
+  giscusContainer.value.appendChild(script)
+}
+
+onMounted(loadGiscus)
+// Se vuelve a cargar cada vez que cambia la ruta
+watch(() => route.path, loadGiscus)
+</script>
+
+<template>
+  <div ref="giscusContainer" />
+</template>
