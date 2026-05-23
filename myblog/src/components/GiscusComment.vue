@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted } from 'vue'
 
 const giscusContainer = ref<HTMLElement | null>(null)
-const route = useRoute()
 
-const loadGiscus = () => {
-  if (!giscusContainer.value) return
-
-  // Limpiar el widget anterior
-  giscusContainer.value.innerHTML = ''
-
+onMounted(() => {
   const script = document.createElement('script')
   script.src = 'https://giscus.app/client.js'
   script.setAttribute('data-repo', 'AnyeloHernandez/my-blog')
@@ -28,11 +21,8 @@ const loadGiscus = () => {
   script.setAttribute('crossorigin', 'anonymous')
   script.async = true
 
-  giscusContainer.value.appendChild(script)
-}
-
-onMounted(loadGiscus)
-
+  giscusContainer.value?.appendChild(script)
+})
 </script>
 
 <template>
