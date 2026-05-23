@@ -17,7 +17,7 @@ const loadGiscus = () => {
   script.setAttribute('data-repo-id', 'R_kgDORQ_wUQ')
   script.setAttribute('data-category', 'General')
   script.setAttribute('data-category-id', 'DIC_kwDORQ_wUc4C9ZGO')
-  script.setAttribute('data-mapping', 'title')
+  script.setAttribute('data-mapping', 'pathname')
   script.setAttribute('data-strict', '0')
   script.setAttribute('data-reactions-enabled', '1')
   script.setAttribute('data-emit-metadata', '0')
