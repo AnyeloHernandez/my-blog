@@ -32,8 +32,7 @@ const loadGiscus = () => {
 }
 
 onMounted(loadGiscus)
-// Se vuelve a cargar cada vez que cambia la ruta
-watch(() => route.path, loadGiscus)
+
 </script>
 
 <template>

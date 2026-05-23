@@ -43,7 +43,7 @@ const postContent = md.render(body)
     </header>
     <div class="post-content" v-html="postContent"></div>
     </article>
-    <GiscusComment />
+    <GiscusComment :key="slug" />
 </template>
 
 <style scoped>
