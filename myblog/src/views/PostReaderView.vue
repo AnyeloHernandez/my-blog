@@ -29,6 +29,16 @@ const { attributes, body } = matter<PostFrontMatter>(raw ?? '')
 const md = new MarkdownIt()
 const postContent = md.render(body)
 
+const ogTitle = document.querySelector('meta[property="og:title"]')
+if (ogTitle) {
+  ogTitle.setAttribute('content', slug)
+} else {
+  const meta = document.createElement('meta')
+  meta.setAttribute('property', 'og:title')
+  meta.setAttribute('content', slug)
+  document.head.appendChild(meta)
+}
+
 </script>
 
 <template>
@@ -43,7 +53,7 @@ const postContent = md.render(body)
     </header>
     <div class="post-content" v-html="postContent"></div>
     </article>
-    <GiscusComment :key="slug" />
+    <GiscusComment :key="slug" :slug="slug"/>
 </template>
 
 <style scoped>
