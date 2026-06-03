@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue"
 import PostsView from "../views/PostsView.vue";
 import PostReaderView from "../views/PostReaderView.vue";
+import AboutView from "../views/AboutView.vue";
 
 /*
 Se utiliza un router para utilizar un SPA y no tener que recargar la página
@@ -22,6 +23,10 @@ const router = createRouter({
             path: '/posts/:slug',
             component: PostReaderView,
         },
+        {
+            path: '/about',
+            component: AboutView,
+        }
     ]
 })
 
